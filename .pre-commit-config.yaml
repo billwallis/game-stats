@@ -1,7 +1,7 @@
 ---
 ci:
   autoupdate_schedule: quarterly
-  skip: ["poetry-lock", "sourcery", "pytest", "coverage-badge"]
+  skip: ["identity", "poetry-lock"]
 
 repos:
   - repo: meta
@@ -39,44 +39,8 @@ repos:
       - id: poetry-lock
         name: Check that the lock file is up-to-date
 
-  # Formatting
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: v4.0.0-alpha.8
     hooks:
       - id: prettier
         name: Make code pretty
-
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.1.4
-    hooks:
-      - id: ruff
-        name: Lint Python code
-        args: ["--fix"]
-      - id: ruff-format
-        name: Format Python code
-
-  # Sourcery
-  - repo: https://github.com/sourcery-ai/sourcery
-    rev: v1.18.1b30
-    hooks:
-      - id: sourcery
-        name: Check for refactoring opportunities
-        args: ["--diff=git diff HEAD", "--no-summary"]
-        files: drawings
-        exclude: \.*/__init__\.py
-
-  # Testing and coverage
-  - repo: local
-    hooks:
-      - id: pytest
-        name: Run unit tests
-        entry: pytest tests --quiet
-        language: system
-        pass_filenames: false
-        always_run: true
-      - id: coverage-badge
-        name: Generate coverage badge
-        entry: coverage-badge -o coverage.svg -f
-        language: system
-        pass_filenames: false
-        always_run: true
