@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "game-stats"
 version = "0.0.0"
 description = "Statistics for game events and outcomes."
-authors = [{name = "Bilbottom"}]
+authors = [{name = "billwallis"}]
 readme = "README.md"
 requires-python = ">=3.11"
 dynamic = ["dependencies"]
